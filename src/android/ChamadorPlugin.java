@@ -28,7 +28,7 @@ public class ChamadorPlugin extends CordovaPlugin {
             resultJSONArray = new JSONArray();
             
             if(result == null) {
-                callback.error("Error!");
+                callbackContext.error("Error!");
             } else {
             
                 try {
@@ -49,7 +49,7 @@ public class ChamadorPlugin extends CordovaPlugin {
                     if(result != null) result.close();
                 }
             
-                callback.success(resultJSONArray);
+                callbackContext.success(resultJSONArray);
                 
             }
             return true;
