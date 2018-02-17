@@ -20,7 +20,6 @@ public class ChamadorPlugin extends CordovaPlugin {
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
-        this.connectToSyncService(cordova);
     }
 
     @Override
