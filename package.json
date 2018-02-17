@@ -1,0 +1,25 @@
+{
+  "name": "@brunoluno/cordova-chamador-plugin",
+  "version": "0.0.1",
+  "description": "",
+  "cordova": {
+    "id": "cordova-chamador-plugin",
+    "platforms": [
+      "android"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brunoluno/ChamadorPlugin.git"
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brunoluno/ChamadorPlugin/issues"
+  },
+  "homepage": "https://github.com/brunoluno/ChamadorPlugin#readme"
+}
