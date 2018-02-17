@@ -1,5 +1,7 @@
 package cordova.chamador.plugin;
 
+import org.apache.cordova.CordovaWebView;
+import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
@@ -24,7 +26,8 @@ public class ChamadorPlugin extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("getMedias")) {
-		    Cursor result = cordova.getActivity().getContentResolver().query("content://cativa.com.br.chamadorclientservice.contentprovider/medias", null, null, null, null);
+            Uri contentUri = Uri.parse("content://cativa.com.br.chamadorclientservice.contentprovider/medias");
+		    Cursor result = cordova.getActivity().getContentResolver().query(contentUri, null, null, null, null);
             JSONArray resultJSONArray = new JSONArray();
             
             if(result == null) {
