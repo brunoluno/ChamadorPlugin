@@ -1,5 +1,5 @@
 var exec = require('cordova/exec');
 
-exports.coolMethod = function (success, error) {
+exports.getMedias = function (success, error) {
     exec(success, error, 'ChamadorPlugin', 'getMedias', []);
 };
