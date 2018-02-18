@@ -25,16 +25,14 @@ public class ChamadorPlugin extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("getMedias")) {
-            Uri contentUri = Uri.parse("content://cativa.com.br.chamadorclientservice.contentprovider/medias");
-		    Cursor result = cordova.getActivity().getContentResolver().query(contentUri, null, null, null, null);
-            JSONArray resultJSONArray = new JSONArray();
-            
-            if(result == null) {
-                callbackContext.error("Error!");
-            } else {
-            
-                try {
-            
+            try {
+                Uri contentUri = Uri.parse("content://cativa.com.br.chamadorclientservice.contentprovider/medias");
+                Cursor result = cordova.getActivity().getContentResolver().query(contentUri, null, null, null, null);
+                JSONArray resultJSONArray = new JSONArray();            
+        
+                if(result == null) {
+                    callbackContext.error("Error!");
+                } else {
                     while (result != null && result.moveToNext()) {
                         JSONObject resultRow = new JSONObject();
                         int colCount = result.getColumnCount();
@@ -47,14 +45,14 @@ public class ChamadorPlugin extends CordovaPlugin {
                         }
                         resultJSONArray.put(resultRow);
                     }
-                } finally {
-                    if(result != null) result.close();
+                    return true;
                 }
-            
-                callbackContext.success(resultJSONArray);
-                
+            } catch (Exception e) {
+                callbackContext.error(e.getMessage());
+            } finally {
+                if(result != null) result.close();
             }
-            return true;
+            callbackContext.success(resultJSONArray);
         }
         return false;
     }
