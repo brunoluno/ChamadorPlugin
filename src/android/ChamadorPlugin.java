@@ -25,10 +25,11 @@ public class ChamadorPlugin extends CordovaPlugin {
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("getMedias")) {
+            JSONArray resultJSONArray = new JSONArray();
+            Cursor result = null;
             try {
                 Uri contentUri = Uri.parse("content://cativa.com.br.chamadorclientservice.contentprovider/medias");
-                Cursor result = cordova.getActivity().getContentResolver().query(contentUri, null, null, null, null);
-                JSONArray resultJSONArray = new JSONArray();            
+                result = cordova.getActivity().getContentResolver().query(contentUri, null, null, null, null);
         
                 if(result == null) {
                     callbackContext.error("Error!");
