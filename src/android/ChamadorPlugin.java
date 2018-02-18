@@ -1,7 +1,5 @@
 package cordova.chamador.plugin;
 
-import org.apache.cordova.CordovaWebView;
-import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
@@ -18,11 +16,6 @@ import android.net.Uri;
 public class ChamadorPlugin extends CordovaPlugin {
 
     @Override
-    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
-        super.initialize(cordova, webView);
-    }
-
-    @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
         if (action.equals("getMedias")) {
             JSONArray resultJSONArray = new JSONArray();
@@ -33,6 +26,7 @@ public class ChamadorPlugin extends CordovaPlugin {
         
                 if(result == null) {
                     callbackContext.error("Error!");
+                    return false;
                 } else {
                     while (result != null && result.moveToNext()) {
                         JSONObject resultRow = new JSONObject();
@@ -44,16 +38,20 @@ public class ChamadorPlugin extends CordovaPlugin {
                                 resultRow = null;
                             }
                         }
-                        resultJSONArray.put(resultRow);
+                        if (resultRow != null) {
+                            resultJSONArray.put(resultRow);
+                        }
                     }
+                    callbackContext.success(resultJSONArray);
                 }
             } catch (Exception e) {
                 callbackContext.error(e.getMessage());
             } finally {
                 if(result != null) result.close();
             }
-            callbackContext.success(resultJSONArray);
             return true;
+        } else {
+            callbackContext.error('Command not found!');
         }
         return false;
     }
