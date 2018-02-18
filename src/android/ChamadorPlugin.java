@@ -51,7 +51,7 @@ public class ChamadorPlugin extends CordovaPlugin {
             }
             return true;
         } else {
-            callbackContext.error('Command not found!');
+            callbackContext.error("Command not found!");
         }
         return false;
     }

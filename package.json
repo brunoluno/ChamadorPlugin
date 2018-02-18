@@ -1,6 +1,6 @@
 {
   "name": "@brunoluno/cordova-chamador-plugin",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "",
   "cordova": {
     "id": "cordova-chamador-plugin",
