@@ -45,7 +45,6 @@ public class ChamadorPlugin extends CordovaPlugin {
                         }
                         resultJSONArray.put(resultRow);
                     }
-                    return true;
                 }
             } catch (Exception e) {
                 callbackContext.error(e.getMessage());
@@ -53,6 +52,7 @@ public class ChamadorPlugin extends CordovaPlugin {
                 if(result != null) result.close();
             }
             callbackContext.success(resultJSONArray);
+            return true;
         }
         return false;
     }
